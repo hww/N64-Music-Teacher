@@ -1,0 +1,91 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* FingBass   keymaps		             	 */
+/*************************************************/
+keymap kFingeredBassC1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  60;
+   keyBase            =  48;
+   detune             =  8;
+} 
+keymap kFingeredBassG3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  61;
+   keyMax             =  91;
+   keyBase            =  82;
+   detune             =  -45;
+} 
+
+keymap kBasssC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  92;
+   keyMax             =  108;
+   keyBase            =  108;
+   detune             =  -4;
+} 
+/*************************************************/
+envelope 33Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  10000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* FingBass samples	            		 */
+/*************************************************/
+sound FingeredBassC1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kFingeredBassC1;
+   envelope           =  33Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/FingBass/FingeredBassC1.aifc";
+} 
+sound FingeredBassG3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kFingeredBassG3;
+   envelope           =  33Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/FingBass/FingeredBassG3.aifc";
+} 
+sound BasssC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBasssC6;
+   envelope           =  33Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/FingBass/BasssC6.aifc";
+} 
+/*************************************************/
+instrument FingBass 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  3;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  FingeredBassC1;
+   sound              =  FingeredBassG3;
+   sound              =  BasssC6;
+}

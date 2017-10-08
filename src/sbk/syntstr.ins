@@ -1,0 +1,71 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* SynthStrings keymaps		             	 */
+/*************************************************/
+keymap kstrings_c4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  83;
+   keyBase            =  84;
+   detune             =  -1;
+} 
+keymap ksynthstrings_d6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  84;
+   keyMax             =  108;
+   keyBase            =  112;
+   detune             =  35;
+} 
+/*************************************************/
+envelope 50Envelope
+{
+   attackTime         =  74000;
+   attackVolume       =  127;
+   decayTime          =  19653000;
+   decayVolume        =  0;
+   releaseTime        =  1739000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* SynthStrings samples		      		 */
+/*************************************************/
+sound strings_c4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kstrings_c4;
+   envelope           =  50Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Syntstr/strings_c4.aifc";
+} 
+sound synthstrings_d6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  ksynthstrings_d6;
+   envelope           =  50Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Syntstr/synthstrings_d6.aifc";
+} 
+/*************************************************/
+instrument SynthStrings 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  1;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  strings_c4;
+   sound              =  synthstrings_d6;
+}

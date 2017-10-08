@@ -1,0 +1,219 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* SyntStrings   keymaps		             	 */
+/*************************************************/
+keymap kStringsC3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  67;
+   keyBase            =  71;
+   detune             =  -25;
+} 
+keymap kStringsC4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  68;
+   keyMax             =  79;
+   keyBase            =  84;
+   detune             =  -1;
+}
+keymap kStringsC5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  80;
+   keyMax             =  100;
+   keyBase            =  96;
+   detune             =  -1;
+} 
+keymap kSynthStringssD6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  101;
+   keyMax             =  108;
+   keyBase            =  112;
+   detune             =  35;
+} 
+/*************************************************/
+envelope 48Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  0;
+   decayVolume        =  127;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* StringsAns samples		      		 */
+/*************************************************/
+sound StringsC3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kStringsC3;
+   envelope           =  48Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC3.aifc";
+} 
+sound StringsC4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kStringsC4;
+   envelope           =  48Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC4.aifc";
+} 
+sound StringsC5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kStringsC5;
+   envelope           =  48Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC5.aifc";
+} 
+sound SynthStringssD6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSynthStringssD6;
+   envelope           =  48Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/SynthStringssD6.aifc";
+}
+/*************************************************/
+instrument StringsAns 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  1;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  StringsC3;
+   sound              =  StringsC4;
+   sound              =  StringsC5;
+   sound              =  SynthStringssD6;
+}
+
+/*************************************************/
+/* SlowStrings   keymaps		       	 */
+/*************************************************/
+keymap k1StringsC3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  67;
+   keyBase            =  71;
+   detune             =  -25;
+} 
+keymap k1StringsC4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  68;
+   keyMax             =  79;
+   keyBase            =  84;
+   detune             =  -1;
+}
+keymap k1StringsC5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  80;
+   keyMax             =  100;
+   keyBase            =  96;
+   detune             =  -1;
+} 
+keymap k1SynthStringssD6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  101;
+   keyMax             =  108;
+   keyBase            =  112;
+   detune             =  35;
+} 
+/*************************************************/
+envelope 49Envelope
+{
+   attackTime         =  10000;
+   attackVolume       =  127;
+   decayTime          =  0;
+   decayVolume        =  127;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* SlowStrings samples		      		 */
+/*************************************************/
+sound 1StringsC3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  k1StringsC3;
+   envelope           =  49Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC3.aifc";
+} 
+sound 1StringsC4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  k1StringsC4;
+   envelope           =  49Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC4.aifc";
+} 
+sound 1StringsC5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  k1StringsC5;
+   envelope           =  49Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/StringsC5.aifc";
+} 
+sound 1SynthStringssD6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  k1SynthStringssD6;
+   envelope           =  49Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/StringsAns/1SynthStringssD6.aifc";
+}
+/*************************************************/
+instrument SlowStrings 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  1;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  1StringsC3;
+   sound              =  1StringsC4;
+   sound              =  1StringsC5;
+   sound              =  1SynthStringssD6;
+}
+

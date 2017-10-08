@@ -1,0 +1,444 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* Banjo   keymaps		              	 */
+/*************************************************/
+keymap kbanjob2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  60;
+   keyBase            =  69;
+   detune             =  16;
+} 
+keymap kbanjof3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  61;
+   keyMax             =  75;
+   keyBase            =  75;
+   detune             =  7;
+}
+keymap kbanjof5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  76;
+   keyMax             =  108;
+   keyBase            =  101;
+   detune             =  27;
+}
+/*************************************************/
+envelope 105Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  1128100;
+   decayVolume        =  0;
+   releaseTime        =  116900;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* Banjo samples		       		 */
+/*************************************************/
+sound banjob2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kbanjob2;
+   envelope           =  105Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Banjio/banjob2.aif";
+} 
+sound banjof3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kbanjof3;
+   envelope           =  105Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Banjio/banjof3.aif";
+} 
+sound banjof5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kbanjof5;
+   envelope           =  105Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Banjio/banjof5.aif";
+} 
+/*************************************************/
+instrument Banjo
+
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  2;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  banjob2;
+   sound              =  banjof3;
+   sound              =  banjof5;
+}
+/***************************************************************************************/
+/***************************************************************************************/
+/* SteelGt   keymaps		              	 */
+/*************************************************/
+keymap kSteelAcGtrA1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  47;
+   keyBase            =  56;
+   detune             =  49;
+} 
+keymap kSteelAcGtrD2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  48;
+   keyMax             =  52;
+   keyBase            =  60;
+   detune             =  -45;
+}
+keymap kSteelAcGtrG2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  53;
+   keyMax             =  58;
+   keyBase            =  66;
+   detune             =  0;
+}
+keymap kSteelAcGtrE3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  62;
+   keyMax             =  66;
+   keyBase            =  75;
+   detune             =  50;
+}   
+keymap kSteelAcGtrA3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  67;
+   keyMax             =  93;
+   keyBase            =  80;
+   detune             =  32;
+} 
+keymap kSteelAcGtrB3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  59;
+   keyMax             =  61;
+   keyBase            =  70;
+   detune             =  29;
+} 
+
+keymap kSteelAcGutrC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  94;
+   keyMax             =  108;
+   keyBase            =  109;
+   detune             =  13;
+} 
+/*************************************************/
+envelope 25Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  9000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* SteelGt samples		           		 */
+/*************************************************/
+sound SteelAcGtrA1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrA1;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrA1.aifc";
+} 
+sound SteelAcGtrD2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrD2;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrD2.aifc";
+} 
+sound SteelAcGtrG2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrG2;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrG2.aifc";
+} 
+sound SteelAcGtrE3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrE3;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrE3.aifc";
+}
+sound SteelAcGtrA3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrA3;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrA3.aifc";
+}  
+sound SteelAcGtrB3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrB3;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGtrB3.aifc";
+} 
+sound SteelAcGutrC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGutrC6;
+   envelope           =  25Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/SteelGt/SteelAcGutrC6.aifc";
+}  
+/*************************************************/
+instrument SteelGt 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  2;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  SteelAcGtrA1;
+   sound              =  SteelAcGtrD2;
+   sound              =  SteelAcGtrG2;
+   sound              =  SteelAcGtrE3;
+   sound              =  SteelAcGtrA3;
+   sound              =  SteelAcGtrB3;
+   sound              =  SteelAcGutrC6;
+}
+
+/***************************************************************************************/
+/***************************************************************************************/
+/* NylonGt   keymaps		              	 */
+/*************************************************/
+keymap kNGuitarD2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  53;
+   keyBase            =  61;
+   detune             =  13;
+} 
+keymap kNGuitarGb2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  54;
+   keyMax             =  56;
+   keyBase            =  65;
+   detune             =  -15;
+}
+keymap kNGuitarE3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  63;
+   keyMax             =  65;
+   keyBase            =  74;
+   detune             =  0;
+}
+keymap kNGuitarAb3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  66;
+   keyMax             =  69;
+   keyBase            =  78;
+   detune             = -14;
+}   
+keymap kNGuitarB3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  57;
+   keyMax             =  62;
+   keyBase            =  70;
+   detune             =  -7;
+} 
+keymap kNGuitarC4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  70;
+   keyMax             =  74;
+   keyBase            =  82;
+   detune             =  -7;
+} 
+keymap kNGuitarE4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  75;
+   keyMax             =  96;
+   keyBase            =  86;
+   detune             =  24;
+} 
+keymap kSteelAcGtrC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  97;
+   keyMax             =  108;
+   keyBase            =  109;
+   detune             =  13;
+} 
+/*************************************************/
+envelope 24Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  8000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* NylonGt samples		       		 */
+/*************************************************/
+sound NGuitarD2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarD2;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/nguitard2.aifc";
+} 
+sound NGuitarGb2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarGb2;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarGb2.aifc";
+} 
+sound NGuitarE3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarE3;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarE3.aifc";
+} 
+sound NGuitarAb3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarAb3;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarAb3.aifc";
+}
+sound NGuitarB3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarB3;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarB3.aifc";
+}  
+sound NGuitarC4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarC4;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarC4.aifc";
+} 
+sound NGuitarE4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kNGuitarE4;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/NGuitarE4.aifc";
+} 
+sound SteelAcGtrC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSteelAcGtrC6;
+   envelope           =  24Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/NylonGt/SteelAcGtrC6.aifc";
+} 
+/*************************************************/
+instrument NylonGt 
+{
+   volume             =  127;
+   pan                =  80;
+   priority           =  2;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  NGuitarD2;
+   sound              =  NGuitarGb2;
+   sound              =  NGuitarE3;
+   sound              =  NGuitarAb3;
+   sound              =  NGuitarB3;
+   sound              =  NGuitarC4;
+   sound              =  NGuitarE4;
+   sound              =  SteelAcGtrC6;
+}

@@ -1,0 +1,171 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* Trumpet   keymaps		             	 */
+/*************************************************/
+keymap kReedHitLoopC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  107;
+   keyMax             =  108;
+   keyBase            =  107;
+   detune             =  -21;
+} 
+keymap kSoftTrumpetA2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  59;
+   keyBase            =  65;
+   detune             =  13;
+} 
+
+keymap kSoftTrumpetD3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  60;
+   keyMax             =  64;
+   keyBase            =  74;
+   detune             =  47;
+}
+
+keymap kSoftTrumpetG3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  65;
+   keyMax             =  69;
+   keyBase            =  78;
+   detune             =  -43; 
+} 
+keymap kSoftTrumpetC3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  70;
+   keyMax             =  74;
+   keyBase            =  83;
+   detune             =  -21;
+}  
+
+keymap kSoftTrumpetF4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  75;
+   keyMax             =  86;
+   keyBase            =  88;
+   detune             =  -20;
+} 
+
+keymap kSoftTrumpetBb4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  87;
+   keyMax             =  94;
+   keyBase            =  93;
+   detune             =  -1;
+}
+/*************************************************/
+envelope 56Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  10000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* trumpet samples	            		 */
+/*************************************************/
+sound ReedHitLoopC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kReedHitLoopC6;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/ReedHitLoopC6.aifc";
+} 
+sound SoftTrumpetA2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetA2;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetA2.aifc";
+} 
+sound SoftTrumpetBb4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetBb4;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetBb4.aifc";
+} 
+sound SoftTrumpetC3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetC3;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetC3.aifc";
+} 
+sound SoftTrumpetD3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetD3;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetD3.aifc";
+} 
+sound SoftTrumpetF4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetF4;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetF4.aifc";
+} 
+sound SoftTrumpetG3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kSoftTrumpetG3;
+   envelope           =  56Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/trumpet/SoftTrumpetG3.aifc";
+} 
+
+/*************************************************/
+instrument Trumpet 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  3;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  ReedHitLoopC6;
+   sound              =  SoftTrumpetA2;
+   sound              =  SoftTrumpetBb4;
+   sound              =  SoftTrumpetC3;
+   sound              =  SoftTrumpetD3;
+   sound              =  SoftTrumpetF4;
+   sound              =  SoftTrumpetG3;
+}

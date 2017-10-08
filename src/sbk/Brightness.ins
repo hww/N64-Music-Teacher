@@ -1,0 +1,71 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* Brightness keymaps		             	 */
+/*************************************************/
+keymap kstrings__c4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  91;
+   keyBase            =  84;
+   detune             =  3;
+} 
+keymap ksynthstrings__d6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  92;
+   keyMax             =  108;
+   keyBase            =  112;
+   detune             =  39;
+} 
+/*************************************************/
+envelope 100Envelope
+{
+   attackTime         =  36000;
+   attackVolume       =  127;
+   decayTime          =  15562000;
+   decayVolume        =  0;
+   releaseTime        =  5644000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* Brightness samples		      		 */
+/*************************************************/
+sound strings__c4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kstrings__c4;
+   envelope           =  100Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Brightness/strings__c4.aifc";
+} 
+sound synthstrings__d6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  ksynthstrings__d6;
+   envelope           =  100Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Syntstr/synthstrings__d6.aifc";
+} 
+/*************************************************/
+instrument Brightness 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  1;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  strings__c4;
+   sound              =  synthstrings__d6;
+}

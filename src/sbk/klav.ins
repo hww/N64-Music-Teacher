@@ -1,0 +1,426 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* MBox           keymaps		     	 */
+/*************************************************/
+keymap kMusicBox5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  96;
+   keyBase            =  89;
+   detune             =  -28;
+}
+keymap ktbellhitc6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  97;
+   keyMax             =  108;
+   keyBase            =  108;
+   detune             =  -48;
+} 
+ 
+/*************************************************/
+envelope 10Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  5000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* MBox samples	                  		 */
+/*************************************************/
+sound MusicBox5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kMusicBox5;
+   envelope           =  10Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/MBox/MusicBox5.aifc";
+} 
+
+sound tbellhitc6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  ktbellhitc6;
+   envelope           =  10Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/MBox/tbellhitc6.aifc";
+} 
+/*************************************************/
+instrument MBox 
+{
+   volume             =  127;
+   pan                =  38;
+   priority           =  0;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  MusicBox5;
+   sound              =  tbellhitc6;
+}
+/***************************************************************************************/
+/***************************************************************************************/
+/* Harpsihord   keymaps			      	 */
+/*************************************************/
+keymap kHarpsichordAb1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  47;
+   keyBase            =  52;
+   detune             =  -46;
+} 
+keymap kHarpsichordE2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  48;
+   keyMax             =  55;
+   keyBase            =  64;
+   detune             =  44;
+}
+keymap kHarpsichordC3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  56;
+   keyMax             =  65;
+   keyBase            =  71;
+   detune             =  -42;
+}
+keymap kHarpsichordA3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  66;
+   keyMax             =  80;
+   keyBase            =  80;
+   detune             = -32;
+}   
+keymap kHarpsichordBb4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  81;
+   keyMax             =  96;              
+   keyBase            =  93;
+   detune             =  -1;
+} 
+keymap kHarpsichordC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  97;
+   keyMax             =  106;
+   keyBase            =  106;
+   detune             =  29;
+} 
+/*************************************************/
+envelope 6Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  5000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* Harpsihord samples	            		 */
+/*************************************************/
+sound HarpsichordAb1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordAb1;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordAb1.aifc";
+} 
+sound HarpsichordE2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordE2;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordE2.aifc";
+} 
+sound HarpsichordC3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordC3;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordC3.aifc";
+} 
+sound HarpsichordA3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordA3;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordA3.aif";
+}
+sound HarpsichordBb4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordBb4;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordBb4.aifc";
+}  
+sound HarpsichordC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kHarpsichordC6;
+   envelope           =  6Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Harpsihord/HarpsichordC6.aifc";
+} 
+/*************************************************/
+instrument Harpsihord 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  1;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  HarpsichordAb1;
+   sound              =  HarpsichordE2;
+   sound              =  HarpsichordC3;
+   sound              =  HarpsichordA3;
+   sound              =  HarpsichordBb4;
+   sound              =  HarpsichordC6;
+}
+/***************************************************************************************/
+/***************************************************************************************/
+/* Gpiano   keymaps		              	 */
+/*************************************************/
+keymap kPianoD1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  38;
+   keyBase            =  58;
+   detune             =  16;
+} 
+keymap kPianoGb1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  39;
+   keyMax             =  51;
+   keyBase            =  60;
+   detune             =  7;
+}
+keymap kPianoAb2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  52;
+   keyMax             =  57;
+   keyBase            =  74;
+   detune             =  7;
+}
+keymap kPianoDb3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  58;
+   keyMax             =  64;
+   keyBase            =  76;
+   detune             = -48;
+}   
+keymap kPianoAb3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  65;
+   keyMax             =  69;
+   keyBase            =  83;
+   detune             =  -48;
+} 
+keymap kPianoDb4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  70;
+   keyMax             =  80;
+   keyBase            =  87;
+   detune             =  35;
+} 
+keymap kPianoC5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  81;
+   keyMax             =  86;
+   keyBase            =  98;
+   detune             =  35;
+} 
+keymap kPianoGb5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  87;
+   keyMax             =  102;
+   keyBase            =  104;
+   detune             =  35;
+} 
+keymap kPianoHitC6
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  103;
+   keyMax             =  108;
+   keyBase            =  111;
+   detune             =  30;
+} 
+/*************************************************/
+envelope 1Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  10000000;
+   decayVolume        =  0;
+   releaseTime        =  1000000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* Gpiano samples		            		 */
+/*************************************************/
+sound PianoD1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoD1;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/GPiano/PianoD1.aifc";
+} 
+sound PianoGb1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoGb1;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/GPiano/PianoGb1.aifc";
+} 
+sound PianoAb2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoAb2;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/GPiano/PianoAb2.aifc";
+} 
+sound PianoDb3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoDb3;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Gpiano/PianoDb3.aifc";
+}
+sound PianoAb3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoAb3;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/GPiano/PianoAb3.aifc";
+}  
+sound PianoDb4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoDb4;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Gpiano/PianoDb4.aif";
+} 
+sound PianoC5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoC5;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Gpiano/PianoC5.aifc";
+} 
+sound PianoGb5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoGb5;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Gpiano/PianoGb5.aifc";
+} 
+sound PianoHitC6
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kPianoHitC6;
+   envelope           =  1Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Gpiano/PianoHitC6.aifc";
+} 
+/*************************************************/
+instrument Gpiano 
+{
+   volume             =  127;
+   pan                =  42;
+   priority           =  2;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  PianoD1;
+   sound              =  PianoGb1;
+   sound              =  PianoAb2;
+   sound              =  PianoDb3;
+   sound              =  PianoAb3;
+   sound              =  PianoDb4;
+   sound              =  PianoC5;
+   sound              =  PianoGb5;
+   sound              =  PianoHitC6; 
+}
+
+

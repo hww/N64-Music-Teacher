@@ -1,0 +1,170 @@
+/******************************************************************************/
+/******************************************************************************/
+/* Bassoon   keymaps		              	 */
+/*************************************************/
+keymap kBassoonAb1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  46;
+   keyBase            =  55;
+   detune             =  -20;
+} 
+keymap kBassoonC2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  47;
+   keyMax             =  50;
+   keyBase            =  59;
+   detune             =  -12;
+}
+keymap kBassoonE2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  51;
+   keyMax             =  54;
+   keyBase            =  63;
+   detune             =  -6;
+} 
+keymap kBassoonAb2
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  55;
+   keyMax             =  58;
+   keyBase            =  67;
+   detune             =  -4;
+} 
+keymap kBassoonC3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  59;
+   keyMax             =  62;
+   keyBase            =  71;
+   detune             =  16;
+} 
+keymap kBassoonE3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  63;
+   keyMax             =  88;
+   keyBase            =  75;
+   detune             =  30;
+} 
+keymap kBassoonE5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  89;
+   keyMax             =  108;
+   keyBase            =  100;
+   detune             =  32;
+} 
+ 
+/*************************************************/
+envelope 70Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  0;
+   decayVolume        =  127;
+   releaseTime        =  100000;
+   releaseVolume      =  0; 
+}
+
+/*************************************************/
+/* Bassoon samples	         		 */
+/*************************************************/
+sound BassoonAb1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonAb1;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonAb1.aif";
+} 
+sound BassoonC2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonC2;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonC2.aif";
+} 
+sound BassoonE2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonE2;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonE2.aif";
+} 
+sound BassoonAb2
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonAb2;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonAb2.aif";
+} 
+sound BassoonC3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonC3;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonC3.aif";
+} 
+sound BassoonE3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonE3;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonE3.aif";
+} 
+sound BassoonE5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kBassoonE5;
+   envelope           =  70Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Bassoon/BassoonE5.aif";
+} 
+
+/*************************************************/
+instrument Bassoon 
+{
+   volume             =  127;
+   pan                =  90;
+   priority           =  0;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  BassoonAb1;
+   sound              =  BassoonC2;
+   sound              =  BassoonE2;
+   sound              =  BassoonAb2;
+   sound              =  BassoonC3;
+   sound              =  BassoonE3;
+   sound              =  BassoonE5;
+
+}

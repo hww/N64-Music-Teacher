@@ -1,0 +1,91 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* AcBass   keymaps		             	 */
+/*************************************************/
+keymap kacousticbassa1
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  57;
+   keyBase            =  57;
+   detune             =  -1;
+} 
+keymap kacousticbassa3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  58;
+   keyMax             =  91;
+   keyBase            =  84;
+   detune             =  -45;
+} 
+
+keymap kacousticbassa5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  92;
+   keyMax             =  108;
+   keyBase            =  106;
+   detune             =  29;
+} 
+/*************************************************/
+envelope 32Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  4773000;
+   decayVolume        =  0;
+   releaseTime        =  282000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* FingBass samples	            		 */
+/*************************************************/
+sound acousticbassa1
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kacousticbassa1;
+   envelope           =  32Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Acbass/acousticbassa1.aifc";
+} 
+sound acousticbassa3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kacousticbassa3;
+   envelope           =  32Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/AcBass/acousticbassa3.aifc";
+} 
+sound acousticbassa5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kacousticbassa5;
+   envelope           =  32Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/AcBass/acousticbassa5.aifc";
+} 
+/*************************************************/
+instrument AcBass 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  3;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  acousticbassa1;
+   sound              =  acousticbassa3;
+   sound              =  acousticbassa5;
+}

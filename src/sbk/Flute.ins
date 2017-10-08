@@ -1,0 +1,147 @@
+/***************************************************************************************/
+/***************************************************************************************/
+/* Flute  keymaps		              	 */
+/*************************************************/
+keymap kfluteg3
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  0;
+   keyMax             =  70;
+   keyBase            =  77;
+   detune             =  -28;
+} 
+keymap kflutec4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  71;
+   keyMax             =  75;
+   keyBase            =  82;
+   detune             =  29;
+}
+keymap kflutef4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  76;
+   keyMax             =  80;
+   keyBase            =  88;
+   detune             =  50;
+}
+keymap kflutebb4
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  81;
+   keyMax             =  85;
+   keyBase            =  95;
+   detune             =  -3;
+}   
+keymap kFluteEb5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  86;
+   keyMax             =  90;
+   keyBase            =  98;
+   detune             =  50;
+} 
+keymap kfluteab5
+{
+   velocityMin        =  1;
+   velocityMax        =  127;
+   keyMin             =  91;
+   keyMax             =  108;
+   keyBase            =  100;
+   detune             =  27;
+} 
+/*************************************************/
+envelope 73Envelope
+{
+   attackTime         =  0;
+   attackVolume       =  127;
+   decayTime          =  11055000;
+   decayVolume        =  0;
+   releaseTime        =  294000;
+   releaseVolume      =  0; 
+}
+/*************************************************/
+/* Flute samples		           		 */
+/*************************************************/
+sound fluteg3
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kfluteg3;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/fluteg3.aifc";
+} 
+sound FluteC4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kflutec4;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/flutec4.aifc";
+} 
+sound flutef4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kflutef4;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/flutef4.aifc";
+} 
+sound flutebb4
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kflutebb4;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/flutebb4.aifc";
+}
+sound FluteEb5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kFluteEb5;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/FluteEb5.aifc";
+}  
+sound fluteab5
+{
+   volume             =  127;
+   pan                =  64;
+   keymap             =  kfluteab5;
+   envelope           =  73Envelope;
+   loopCount          =  0; 
+   use                  "c:/n64/sources/midi7/sbk/Flute/fluteab5.aif";
+}  
+/*************************************************/
+instrument Flute 
+{
+   volume             =  127;
+   pan                =  64;
+   priority           =  2;
+   tremoloType        =  0;
+   tremoloRate        =  0;
+   tremoloDepth       =  0;
+   tremoloDelay       =  0;
+   vibratoType        =  0;
+   vibratoRate        =  0;
+   vibratoDepth       =  0;
+   vibratoDelay       =  0;
+   bendRange          =  200;
+   sound              =  fluteg3;
+   sound              =  FluteC4;
+   sound              =  flutef4;
+   sound              =  flutebb4;
+   sound              =  FluteEb5;
+   sound              =  fluteab5;
+}
