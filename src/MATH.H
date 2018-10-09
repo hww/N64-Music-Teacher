@@ -1,4 +1,10 @@
-/* 
+/*****************************************************************************
+* @project N64 Music Teacher
+* @info The game for learning music.
+* @platform Nintendo 64
+* @autor Valery P. (https://github.com/hww)
+*****************************************************************************/
+/*
  * Just some general maths stuff
  *
  * All angles are in degrees so have to convert to radians
@@ -10,6 +16,6 @@ typedef float vec3_t[3];
 #define VectorScale(A,B,C) C[0]=A[0]*(B); C[1]=A[1]*(B); C[2]=A[2]*(B);
 #define VectorAdd(A,B,C) C[0]=A[0]+B[0]; C[1]=A[1]+B[1]; C[2]=A[2]+B[2];
 
-void AngleVectors (vec3_t angles, vec3_t out);
+void AngleVectors(vec3_t angles, vec3_t out);
 
 extern vec3_t vec3_origin;

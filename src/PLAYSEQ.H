@@ -1,11 +1,14 @@
-/*
- * playseq.h
- */
+/*****************************************************************************
+* @project N64 Music Teacher
+* @info The game for learning music.
+* @platform Nintendo 64
+* @autor Valery P. (https://github.com/hww)
+*****************************************************************************/
 
-#define	STACKSIZE	  			0x8000
+#define	STACKSIZE	  	  0x8000
 #define MAX_VOICES        64		//64
 #define MAX_PVOICES       32		//32
-#define MAX_BUFFER_LENGTH 2048  //2048
+#define MAX_BUFFER_LENGTH 2048		//2048
 #define DMA_QUEUE_SIZE    50		//50
 #define MAX_UPDATES       128
 #define EVT_COUNT         128		//128
@@ -37,20 +40,19 @@ void stop_midi(void);
 void play_midi(void);
 void audio_update(void);
 s32 getpos_midi(void);
-void make_karaoke(void );
-void midi_prg(u8 chan,s32 prog);
-void midi_vol(u8 chan,u8 vol);
+void make_karaoke(void);
+void midi_prg(u8 chan, s32 prog);
+void midi_vol(u8 chan, u8 vol);
 int playing(void);
 
-
 typedef struct
-	{
-	u8 chanel;
-	s8 base_note;
-	s16 precision;
-	s16 base_kara;
-	s8  size;
-	} kara_cfg;
+{
+    u8 chanel;
+    s8 base_note;
+    s16 precision;
+    s16 base_kara;
+    s8  size;
+} kara_cfg;
 
 #define  KCHAR_L  (s8)0
 #define  KCHAR_H  (s8)36
@@ -60,11 +62,10 @@ typedef struct
 #define  KBAD     (s8)75
 #define  KEOF     (s8)76
 
-
-typedef struct 
-	{
-	s8  note;
-	s8  com;
-	s32 pos;
-	s32 dur;
-	} karatxt;
+typedef struct
+{
+    s8  note;
+    s8  com;
+    s32 pos;
+    s32 dur;
+} karatxt;

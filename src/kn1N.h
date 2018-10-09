@@ -1,3 +1,9 @@
+/*****************************************************************************
+* @project N64 Music Teacher
+* @info The game for learning music.
+* @platform Nintendo 64
+* @autor Valery P. (https://github.com/hww)
+*****************************************************************************/
 /*
    This file was created by TheTool ver 1.0
    TheTool is a Program By Count0/Warehouse

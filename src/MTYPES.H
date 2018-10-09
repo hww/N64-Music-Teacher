@@ -1,12 +1,14 @@
+/*****************************************************************************
+* @project N64 Music Teacher
+* @info The game for learning music.
+* @platform Nintendo 64
+* @autor Valery P. (https://github.com/hww)
+*****************************************************************************/
+
 #ifndef MTYPES_H
 #define MTYPES_H
 
-/*
-        LaCMod atomic types:
-	====================
-*/
-
-
+/* Atomic types */
 
 #ifdef __OS2__
 

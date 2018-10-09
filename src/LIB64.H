@@ -1,3 +1,10 @@
+/*****************************************************************************
+* @project N64 Music Teacher
+* @info The game for learning music.
+* @platform Nintendo 64
+* @autor Valery P. (https://github.com/hww)
+*****************************************************************************/
+
 #ifndef LIB64_H
 #define LIB64_H
 
