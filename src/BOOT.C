@@ -14,13 +14,13 @@
 #include <ramrom.h>
 #include "boot.h"
 
-       void     boot(void);
+void     boot(void);
 static void     idle(void *);
 extern void     mainproc(void *);
 
-static u64      bootStack[STACKSIZE/8];
-static u64      idleThreadStack[STACKSIZE/8];
-static u64      mainThreadStack[STACKSIZE/8];
+static u64      bootStack[STACKSIZE / 8];
+static u64      idleThreadStack[STACKSIZE / 8];
+static u64      mainThreadStack[STACKSIZE / 8];
 
 static OSThread idleThread;
 static OSThread mainThread;
@@ -50,18 +50,14 @@ OSIoMesg                dmaIOMessageBuf;
 
 /*
  * Boot procedure
- *
+ * Creates idleThread and then starts mainproc
  */
-//  Здесь старт всей системы
-//  создается idleThread и запускается, затем передается управление
-//  в mainproc.
-//  работают только системные функции API, пользовательских нет.
 
 void boot(void)
 {
     osInitialize();
     osCreateThread(&idleThread, TID_IDLE, idle, (void *)0,
-                   idleThreadStack+STACKSIZE/sizeof(u64), PRI_IDLE);
+        idleThreadStack + STACKSIZE / sizeof(u64), PRI_IDLE);
     osStartThread(&idleThread);
 }
 
@@ -74,30 +70,14 @@ void idle(void *arg)
 {
     /* Initialize video */
     osCreateViManager(OS_PRIORITY_VIMGR);
-// Выбираем версию видеосистемы PAL/NTSC/MPAL
-//    switch(osTvType) {
+    osViSetMode(&osViModeNtscLpn2);
 
-        /* PAL */
-	osViSetMode(&osViModeNtscLpn2);
-//       case 0: osViSetMode(&osViModePalLpn2);
-//                break;
-
-        /* NTSC */
-//       case 1: osViSetMode(&osViModeNtscLpn2);
-//                break;
-
-        /* MPAL */
-//        case 2: osViSetMode(&osViModeMpalLpn2);
-//                break;
-//    };
-
-    osViSetSpecialFeatures(OS_VI_GAMMA_OFF|OS_VI_GAMMA_DITHER_OFF);
+    osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_GAMMA_DITHER_OFF);
     osViBlack(1);
 
     /* Start PI Mgr for access to cartridge */
     osCreatePiManager((OSPri)OS_PRIORITY_PIMGR, &PiMessageQ, PiMessages,
-		      NUM_PI_MSGS);
-
+        NUM_PI_MSGS);
 
     /* Setup message queues */
     osCreateMesgQueue(&rspMessageQ, &rspMessageBuf, 1);
@@ -116,17 +96,14 @@ void idle(void *arg)
 
     /* Create main thread */
     osCreateThread(&mainThread, TID_MAINPROC, mainproc, (void*)0,
-                   mainThreadStack+STACKSIZE/sizeof(u64), PRI_MAINPROC);
+        mainThreadStack + STACKSIZE / sizeof(u64), PRI_MAINPROC);
 
     /* Start main thread */
-		//Здесь стартует mainproc
     osStartThread(&mainThread);
 
     /* Become the idle thread */
     osSetThreadPri(0, 0);
-		// idleThread останавливается и управление передается
-		// ядром ОС в mainproc
-		
+    // stop idleThread and call mainproc
     for (;;);
 }
 

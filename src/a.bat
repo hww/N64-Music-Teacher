@@ -1,4 +1,4 @@
-rem MIDI compiling Ø‡Æ¢•‡®‚Ï ·onfig.h
+rem MIDI compiling (check ·onfig.h)
 del *.cvt
 del *.cmp
 del *.sbk

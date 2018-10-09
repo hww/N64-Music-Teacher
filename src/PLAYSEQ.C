@@ -11,7 +11,7 @@
 
 #include <ultra64.h>
 #include "playseq.h"
-//#include "debug.h"
+#include "debug.h"
 
 extern u16 mycfb[320 * 240];
 
@@ -19,6 +19,7 @@ int firstframe = 1;
 
 int backwards = 0, forwards = 0;
 
+static OSTask *tlist[2];               /* globaltask list      */
 static  void            stopOsc(void *oscState);
 static  ALMicroTime     updateOsc(void *oscState, f32 *updateVal);
 static  ALMicroTime     initOsc(void **oscState, f32 *initVal, u8 oscType,
@@ -28,7 +29,7 @@ extern OSMesgQueue dmaMessageQ, rspMessageQ, retraceMessageQ;
 extern OSMesg dmaMessageBuf[DMA_QUEUE_SIZE], rspMessageBuf, retraceMessageBuf;
 extern OSIoMesg dmaIOMessageBuf;
 
-static OSTask *tlist[2];               /* globaltask list      */
+
 
 int get_tempo(void);
 void set_tempo(int tempo);
@@ -106,52 +107,53 @@ s32 dmaCallBack(s32 addr, s32 len, void *state)
     DMABuffer   *dmaPtr, *lastDmaPtr;
     s32         addrEnd, buffEnd;
 
-
     lastDmaPtr = 0;
     dmaPtr = dmaState.firstUsed;
     addrEnd = addr + len;
 
-    while (dmaPtr)                        /* see if buffer is already set up */
+    while (dmaPtr)                                        /* see if buffer is already set up */
     {
 
         buffEnd = dmaPtr->startAddr + MAX_BUFFER_LENGTH;
-        if (dmaPtr->startAddr > addr)     /* since buffers are ordered */
-            break;                        /* abort if past possible */
+        if (dmaPtr->startAddr > addr)                     /* since buffers are ordered */
+            break;                                        /* abort if past possible */
 
-        else if (addrEnd <= buffEnd)      /* yes, found one */
+        else if (addrEnd <= buffEnd)                      /* yes, found one */
         {
-            dmaPtr->lastFrame = gFrameCt; /* mark it used */
+            dmaPtr->lastFrame = gFrameCt;                 /* mark it used */
             freeBuffer = dmaPtr->ptr + addr - dmaPtr->startAddr;
             return (int)osVirtualToPhysical(freeBuffer);
         }
         lastDmaPtr = dmaPtr;
         dmaPtr = (DMABuffer*)dmaPtr->node.next;
     }
-
     /* get here, and you didn't find a buffer, so dma a new one */
     /* get a buffer from the free list */
     dmaPtr = dmaState.firstFree;
 
-    assert(dmaPtr);  /* be sure you have a buffer */
+    assert(dmaPtr);                                       /* be sure you have a buffer */
 
     dmaState.firstFree = (DMABuffer*)dmaPtr->node.next;
     alUnlink((ALLink*)dmaPtr);
 
     /* add it to the used list */
-    if (lastDmaPtr) /* normal procedure */
+    if (lastDmaPtr)
     {
+        /* normal procedure */
         alLink((ALLink*)dmaPtr, (ALLink*)lastDmaPtr);
     }
-    else if (dmaState.firstUsed)            /* jam at begining of list */
+    else if (dmaState.firstUsed)
     {
+        /* jam at beginning of list */
         lastDmaPtr = dmaState.firstUsed;
         dmaState.firstUsed = dmaPtr;
         dmaPtr->node.next = (ALLink*)lastDmaPtr;
         dmaPtr->node.prev = 0;
         lastDmaPtr->node.prev = (ALLink*)dmaPtr;
     }
-    else /* no buffers in list, this is the first one */
+    else
     {
+        /* no buffers in list, this is the first one */
         dmaState.firstUsed = dmaPtr;
         dmaPtr->node.next = 0;
         dmaPtr->node.prev = 0;
@@ -286,7 +288,7 @@ typedef struct oscData_s {
 
 /*
  * Number of osc states needed. In worst case will need two for each
- * voice. But if tremelo and vibrato not used on all instruments will
+ * voice. But if tremolo and vibrato not used on all instruments will
  * need less.
  */
 #define  OSC_STATE_COUNT    2*MAX_VOICES
@@ -303,9 +305,8 @@ oscData  oscStates[OSC_STATE_COUNT];
 
 f32 _depth2Cents(u8 depth)
 {
-    f32     x = 1.03099303;
-    f32     cents = 1.0;
-
+    f32 x = 1.03099303;
+    f32 cents = 1.0;
     while (depth)
     {
         if (depth & 1)
@@ -313,7 +314,6 @@ f32 _depth2Cents(u8 depth)
         x *= x;
         depth >>= 1;
     }
-
     return(cents);
 }
 
@@ -334,6 +334,7 @@ ALMicroTime initOsc(void **oscState, f32 *initVal, u8 oscType,
          * 0x4000, but could easily use another conversion method.
          */
         deltaTime = oscDelay * 0x4000;
+
         switch (oscType) /* set the initVal */
         {
         case TREMELO_SIN:
@@ -637,25 +638,21 @@ void open_midi(void)
     osWritebackDCacheAll();
     osPiStartDma(&dmaIOMessageBuf, OS_MESG_PRI_NORMAL, OS_READ,
         (u32)_seqSegmentRomStart, sfile,
-        len, &dmaMessageQ);            // Заголовок SBK в котором все входы на все файлы миди
+        len, &dmaMessageQ);
     (void)osRecvMesg(&dmaMessageQ, NULL, OS_MESG_BLOCK);
-    // Укажем секвенсе плееру заголовок в памяти и начало sbk в ПЗУ
-        ///!!! sfile - заголовок sbk
+
     alSeqFileNew(sfile, (u8 *)_seqSegmentRomStart);
-    //!!! seqNo - номер текущей композиции
-//    if (seqNo > sfile->seqCount || seqNo < 0) эта проверка есть дальше, зачем она здесь ???
-//        seqNo = 0;            // Если текущий номер больше возможного то 0
     /*
      * Initialize DAC output rate
      */
     c.outputRate = osAiSetFrequency(OUTPUT_RATE);
-    // NUM_FIELDS=1   44100 / 60 -> 735 количество сэмплов за кадр
-    fsize = (f32)NUM_FIELDS * c.outputRate / (f32)20; //was 60
+    // NUM_FIELDS=1   44100 / 60 -> 735 samples per frame
+    fsize = (f32)NUM_FIELDS * c.outputRate / (f32)20; 
     frameSize = (s32)fsize;
     if (frameSize < fsize)
-        frameSize++;                // округлим в болшую сторону
+        frameSize++;                // round to most 
     if (frameSize & 0xf)
-        frameSize = (frameSize & ~0xf) + 0x10;  // округлим до 16 байт
+        frameSize = (frameSize & ~0xf) + 0x10;  // round to 16 bytes
     minFrameSize = frameSize - 16;
 
     /*
@@ -664,18 +661,9 @@ void open_midi(void)
     c.maxVVoices = MAX_VOICES;
     c.maxPVoices = MAX_PVOICES;
     c.maxUpdates = MAX_UPDATES;
-    c.dmaproc = &dmaNew; // то процедура обслуживания DMA
+    c.dmaproc = &dmaNew; // DMA procedure
     c.heap = &hp;
     c.fxType = AL_FX_CUSTOM;
-    /*
-    AL_FX_NONE
-    AL_FX_SMALLROOM
-    AL_FX_BIGROOM
-    AL_FX_CHORUS
-    AL_FX_FLANGE
-    AL_FX_ECHO
-    AL_FX_CUSTOM
-    */
 
     if (c.fxType == AL_FX_CUSTOM) {
         s32 delay_size = 0;
@@ -684,6 +672,7 @@ void open_midi(void)
          * to be AL_FX_CUSTOM, and then allocate and fill in the effect
          * parameters. Some examples follows:
          */
+         
 #define ms *(((s32) ((f32) OUTPUT_RATE/1000))&~0x7)
 #define SECTION_COUNT 8
 #define SECTION_SIZE  8
@@ -693,15 +682,15 @@ void open_midi(void)
             /* sections    total length */
             SECTION_COUNT,   325 ms,
             /*       chorus  chorus   filter
-input  output  fbcoef  ffcoef   gain     rate   depth     coef      */
-325 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
-259 ms,   0 ms,  9830,  -9830, 0x0000,      0,      0, 0x0000,
-139 ms,   0 ms, 16384, -16384, 0x0000,      0,      0, 0x0000,
- 78 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
- 39 ms,   0 ms, 16384, -16384, 0x0000,      0,      0, 0x0000,
- 18 ms,   0 ms,  9830,  -9830, 0x0000,      0,      0, 0x0000,
-  9 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
-325 ms,   0 ms,  8192,  -8192, 0x2000,    000,   0000, 0x0000
+            input  output  fbcoef  ffcoef   gain     rate   depth     coef      */
+            325 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
+            259 ms,   0 ms,  9830,  -9830, 0x0000,      0,      0, 0x0000,
+            139 ms,   0 ms, 16384, -16384, 0x0000,      0,      0, 0x0000,
+             78 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
+             39 ms,   0 ms, 16384, -16384, 0x0000,      0,      0, 0x0000,
+             18 ms,   0 ms,  9830,  -9830, 0x0000,      0,      0, 0x0000,
+              9 ms,   0 ms,  8192,  -8192, 0x0000,      0,      0, 0x0000,
+            325 ms,   0 ms,  8192,  -8192, 0x2000,    000,   0000, 0x0000
         };
 
         c.params = params;
@@ -738,29 +727,29 @@ input  output  fbcoef  ffcoef   gain     rate   depth     coef      */
     seqc.debugFlags = NO_VOICE_ERR_MASK | NOTE_OFF_ERR_MASK | NO_SOUND_ERR_MASK;
 #endif
 
-    //#ifdef COMP_SEQ_PLAY
+#ifdef COMP_SEQ_PLAY
     alCSPNew(seqp, &seqc);
-    //#else
-    //    alSeqpNew(seqp, &seqc);
-    //#endif
+#else
+    alSeqpNew(seqp, &seqc);
+#endif
 
     alBnkfNew((ALBankFile *)midiBankPtr, (u8 *)_miditableSegmentRomStart);
     midiBank = ((ALBankFile *)midiBankPtr)->bankArray[0];
 
-    //EPrint("Keymin=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyMin);
-    //EPrint("Keymax=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyMax);
-    //EPrint("Keybase=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyBase);
+    // EPrint("Keymin=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyMin);
+    // EPrint("Keymax=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyMax);
+    // EPrint("Keybase=%d\n",midiBank->instArray[0]->soundArray[0]->keyMap->keyBase);
 
 
-//#ifdef COMP_SEQ_PLAY
+#ifdef COMP_SEQ_PLAY
     alCSPSetBank(seqp, midiBank);
-    //#else
-    //    alSeqpSetBank(seqp, midiBank);
-    //#endif
+#else
+    alSeqpSetBank(seqp, midiBank);
+#endif
 
-        /*
-         * Allocate storage for sequence
-         */
+   /*
+    * Allocate storage for sequence
+    */
     seqPtr = alHeapAlloc(&hp, 1, MAX_SEQ_LENGTH);
     set_file();
 }
@@ -847,11 +836,11 @@ void set_file(void) {  // seqNo - File number
 
 void play_midi(void) {
 
-    //#ifdef COMP_SEQ_PLAY
+#ifdef COMP_SEQ_PLAY
     alCSPPlay(seqp);
-    //#else
-    //        alSeqpPlay(seqp);
-    //#endif
+#else
+    alSeqpPlay(seqp);
+#endif
     frame = 0;
     /*
      * Sync up on vertical retrace - read more than 1 to be sure!
@@ -1072,11 +1061,11 @@ void audio_update(void) {
 void stop_midi(void)
 {
 
-    //#ifdef COMP_SEQ_PLAY
+#ifdef COMP_SEQ_PLAY
     alCSPStop(seqp);
-    //#else
-    //  alSeqpStop(seqp);
-    //#endif
+#else
+    alSeqpStop(seqp);
+#endif
     frame = 0;
 }
 
@@ -1175,7 +1164,7 @@ void get_allevent(void)
             npos += kcnf.base_kara;
         }
 
-        note_write(tnote, tpos, tdur); // check if tdur==0 written previous note
+        note_write(tnote, tpos, tdur);      //  previous note
 
         // npos is next big note position
         npos = ((tpos / kcnf.base_kara) + 1) * kcnf.base_kara;
@@ -1187,11 +1176,11 @@ void get_allevent(void)
             cheap = pos - npos; // cheap is length to next note
             if (cheap > kcnf.base_kara)
             {
-                note_write(KNOP, npos, kcnf.base_kara); // written "'"
+                note_write(KNOP, npos, kcnf.base_kara); // "'"
             }
             else
             {
-                note_write(KNOP, npos, cheap); // written "'"
+                note_write(KNOP, npos, cheap); // "'"
             }
             npos += kcnf.base_kara;
         }

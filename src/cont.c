@@ -10,15 +10,15 @@
 /* app specific includes */
 #include "boot.h"
 
-extern OSMesgQueue      n_siMessageQ;
-extern OSPfs    pfs[MAXCONTROLLERS];
+extern OSMesgQueue  n_siMessageQ;
+extern OSPfs        pfs[MAXCONTROLLERS];
 
-OSContStatus	statusdata[MAXCONTROLLERS];
-OSContPad		dummycontrollerdata = { 0, 0, 0, 0 };
-OSContPad		controllerdata[MAXCONTROLLERS];
-OSContPad		*validcontrollerdata[MAXCONTROLLERS];
-int		activeControllers[MAXCONTROLLERS];
-int		numControllers = 0;
+OSContStatus  statusdata[MAXCONTROLLERS];
+OSContPad     dummycontrollerdata = { 0, 0, 0, 0 };
+OSContPad     controllerdata[MAXCONTROLLERS];
+OSContPad     *validcontrollerdata[MAXCONTROLLERS];
+      int     activeControllers[MAXCONTROLLERS];
+      int     numControllers = 0;
 
 /*
  * Return how many controllers are connected
