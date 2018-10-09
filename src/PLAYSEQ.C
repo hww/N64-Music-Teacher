@@ -13,10 +13,12 @@
 #include "playseq.h"
 #include "debug.h"
 
+extern OSMesgQueue dmaMessageQ, rspMessageQ, retraceMessageQ;
+extern OSMesg dmaMessageBuf[DMA_QUEUE_SIZE], rspMessageBuf, retraceMessageBuf;
+extern OSIoMesg dmaIOMessageBuf;
 extern u16 mycfb[320 * 240];
 
 int firstframe = 1;
-
 int backwards = 0, forwards = 0;
 
 static OSTask *tlist[2];               /* globaltask list      */
@@ -25,15 +27,9 @@ static  ALMicroTime     updateOsc(void *oscState, f32 *updateVal);
 static  ALMicroTime     initOsc(void **oscState, f32 *initVal, u8 oscType,
     u8 oscRate, u8 oscDepth, u8 oscDelay);
 
-extern OSMesgQueue dmaMessageQ, rspMessageQ, retraceMessageQ;
-extern OSMesg dmaMessageBuf[DMA_QUEUE_SIZE], rspMessageBuf, retraceMessageBuf;
-extern OSIoMesg dmaIOMessageBuf;
-
-
-
-int get_tempo(void);
+ int get_tempo(void);
 void set_tempo(int tempo);
-int get_chvol(int ch);
+ int get_chvol(int ch);
 void set_chvol(int ch, int vol);
 void set_chins(int ch, int ins);
 void ins_ch(int ch, int ins);
@@ -597,15 +593,15 @@ static    oscData
 
 void open_midi(void)
 {
-    /*
-     * Audio heap
-     */
-     //InitDebug();
+   /*
+    * Audio heap
+    */
+    InitDebug();
     alHeapInit(&hp, (u8 *)audioHeap, AUDIO_HEAP_SIZE);
 
-    /*
-     * Allocate storage for command list and task headers
-     */
+   /*
+    * Allocate storage for command list and task headers
+    */
     cmdList[0] = alHeapAlloc(&hp, 1, MAX_CLIST_SIZE * sizeof(Acmd));
     cmdList[1] = alHeapAlloc(&hp, 1, MAX_CLIST_SIZE * sizeof(Acmd));
     tlist[0] = alHeapAlloc(&hp, 1, sizeof(OSTask));
@@ -650,7 +646,7 @@ void open_midi(void)
     fsize = (f32)NUM_FIELDS * c.outputRate / (f32)20; 
     frameSize = (s32)fsize;
     if (frameSize < fsize)
-        frameSize++;                // round to most 
+        frameSize++;                            // round to most 
     if (frameSize & 0xf)
         frameSize = (frameSize & ~0xf) + 0x10;  // round to 16 bytes
     minFrameSize = frameSize - 16;
@@ -786,14 +782,11 @@ void set_file(void) {  // seqNo - File number
     do
     {
         alCSeqNextEvent(seq, &event);
-        //if (!((event.type == AL_SEQ_MIDI_EVT)&&
-            //   ((event.msg.midi.status&0xF0) == AL_MIDI_NoteOn)))
-            //   EPrint("Type=%2X  Status=%2X  Byte1=%d  Byte2=%d\n",event.type,event.msg.midi.status,event.msg.midi.byte1,event.msg.midi.byte2);
-                        //Сохраним темп
+        // Save tempo
         if ((event.type == AL_TEMPO_EVT) && (f_tempo == 0))
             f_tempo = (int)((s32)60000000 / (s32)(65536 * (s32)event.msg.tempo.byte1 + 256 * (s32)event.msg.tempo.byte2 + (s32)event.msg.tempo.byte3));
 
-        //Сохраним громкость всех каналов
+        // Save volume for all channels 
         if ((event.type == AL_SEQ_MIDI_EVT) &&
             ((event.msg.midi.status & 0xf0) == AL_MIDI_ControlChange) &&
             (event.msg.midi.byte1 == AL_MIDI_VOLUME_CTRL))
@@ -802,20 +795,20 @@ void set_file(void) {  // seqNo - File number
                 chvol[event.msg.midi.status & 0x0f] = (int)event.msg.midi.byte2;
         }
 
-        //Сохраним инструменты всех каналов
+        // Save instruments for all channels
         if ((event.type == AL_SEQ_MIDI_EVT) &&
             ((event.msg.midi.status & 0xf0) == AL_MIDI_ProgramChange))
         {
             if (chins[(event.msg.midi.status & 0x0f)] == 0)
                 chins[(event.msg.midi.status & 0x0f)] = (int)event.msg.midi.byte1;
         }
-        //Исполним MIDI команду в offline
+        // Execute MIDI command with off-line mode
         if ((event.type == AL_SEQ_MIDI_EVT) && (event.msg.midi.status != 0xC9))
         {
             alCSPSendMidi(seqp, alCSeqGetTicks(seq), event.msg.midi.status, event.msg.midi.byte1, event.msg.midi.byte2);
         }
 
-        //Найдем первую ноту
+        // Find first loop
         if ((event.type == AL_SEQ_MIDI_EVT) &&
             ((event.msg.midi.status & 0xF0) == AL_MIDI_NoteOn) && (ns_flag == 0))
         {
@@ -823,10 +816,10 @@ void set_file(void) {  // seqNo - File number
             ns_flag = 1;
             break;
         }
-        //     EPrint("Event=%d Status=%2X Flag=%d\n",event.type,event.msg.midi.status,ns_flag);
+        // EPrint("Event=%d Status=%2X Flag=%d\n",event.type,event.msg.midi.status,ns_flag);
 
     } while (event.type != AL_SEQ_END_EVT);
-    //Встаем на первую ноту
+    // Put to first note
     alCSeqSetLoc(seq, &n_start);
     set_tempo(f_tempo);
     alCSPSetChlPriority(seqp, 14, 127);
